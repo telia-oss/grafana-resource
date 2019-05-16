@@ -1,0 +1,202 @@
+[
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": "telia-no-channelapi-prod",
+    "fill": 1,
+    "gridPos": {
+      "h": 9,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "id": 1,
+    "legend": {
+      "avg": false,
+      "current": false,
+      "max": false,
+      "min": false,
+      "show": true,
+      "total": false,
+      "values": false
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "percentage": false,
+    "pointradius": 5,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "dimensions": {
+          "FunctionName": "layout"
+        },
+        "highResolution": false,
+        "metricName": "Invocations",
+        "namespace": "AWS/Lambda",
+        "period": "",
+        "refId": "A",
+        "region": "default",
+        "statistics": ["Average"]
+      },
+      {
+        "dimensions": {
+          "FunctionName": "layout"
+        },
+        "highResolution": false,
+        "metricName": "Errors",
+        "namespace": "AWS/Lambda",
+        "period": "",
+        "refId": "Bt",
+        "region": "eu-west-1",
+        "statistics": ["Average"]
+      }
+    ],
+    "thresholds": [],
+    "timeFrom": null,
+    "timeShift": null,
+    "title": "Layout",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "type": "graph",
+    "xaxis": {
+      "buckets": null,
+      "mode": "time",
+      "name": null,
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "short",
+        "label": null,
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true
+      },
+      {
+        "format": "short",
+        "label": null,
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true
+      }
+    ],
+    "yaxis": {
+      "align": false,
+      "alignLevel": null
+    }
+  },
+  {
+    "aliasColors": {},
+    "bars": false,
+    "dashLength": 10,
+    "dashes": false,
+    "datasource": "telia-no-channelapi-prod",
+    "fill": 1,
+    "gridPos": {
+      "h": 9,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "id": 2,
+    "legend": {
+      "avg": false,
+      "current": false,
+      "max": false,
+      "min": false,
+      "show": true,
+      "total": false,
+      "values": false
+    },
+    "lines": true,
+    "linewidth": 1,
+    "nullPointMode": "null",
+    "percentage": false,
+    "pointradius": 5,
+    "points": false,
+    "renderer": "flot",
+    "seriesOverrides": [],
+    "spaceLength": 10,
+    "stack": false,
+    "steppedLine": false,
+    "targets": [
+      {
+        "dimensions": {
+          "FunctionName": "layout"
+        },
+        "highResolution": false,
+        "metricName": "Invocations",
+        "namespace": "AWS/Lambda",
+        "period": "",
+        "refId": "A",
+        "region": "default",
+        "statistics": ["Average"]
+      },
+      {
+        "dimensions": {
+          "FunctionName": "layout"
+        },
+        "highResolution": false,
+        "metricName": "Errors",
+        "namespace": "AWS/Lambda",
+        "period": "",
+        "refId": "Bt",
+        "region": "eu-west-1",
+        "statistics": ["Average"]
+      }
+    ],
+    "thresholds": [],
+    "timeFrom": null,
+    "timeShift": null,
+    "title": "Layout-clone",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "type": "graph",
+    "xaxis": {
+      "buckets": null,
+      "mode": "time",
+      "name": null,
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "short",
+        "label": null,
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true
+      },
+      {
+        "format": "short",
+        "label": null,
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true
+      }
+    ],
+    "yaxis": {
+      "align": false,
+      "alignLevel": null
+    }
+  }
+]
