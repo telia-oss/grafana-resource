@@ -1,4 +1,4 @@
 build:
 	cargo build
 run:
-	cargo run
+	cat input.json | cargo run
