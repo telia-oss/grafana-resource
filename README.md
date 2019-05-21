@@ -55,7 +55,7 @@ resource:
 
 ### Panels file example
 
-[panels.json] (https://github.com/telia-oss/grafana-resource/blob/master/panels.json)
+[panels.json](https://github.com/telia-oss/grafana-resource/blob/master/panels.json)
 
 
 # Libraries
