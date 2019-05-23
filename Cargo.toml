@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Mohamad al moualem <m.almouallem@gmail.com>"]
 
 [dependencies]
-rustana = { git = "https://github.com/telia-oss/rustana.git", tag = "0.0.1" }
+rustana = "0.0.2"
 serde_json = "1.0.39"
 serde = { version = "1.0.91", features = ["derive"] }
