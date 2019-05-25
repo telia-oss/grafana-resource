@@ -6,7 +6,7 @@ A Concourse resource to update Grafana dashboard panels.
 
 | Parameter          | Required      | Example                  | Description
 | ------------------ | ------------- | -------------            | ------------------------------ |
-| grafana_url        | Yes           | https://YOUR-GRAFANA.COM |  you grafana domain url                              |
+| grafana_url        | Yes           | https://YOUR-GRAFANA.COM |  your grafana domain url                              |
 | grafana_token      | Yes           | {YOUR_GRAFANA_TOKEN}     |                                |
 
 
