@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/telia-oss/grafana-resource.svg?branch=master)
+
 # Grafana resource
 
 A Concourse resource to update Grafana dashboard panels.
