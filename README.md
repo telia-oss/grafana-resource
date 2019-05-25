@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/telia-oss/grafana-resource.svg?branch=master)
+[![Build Status](https://travis-ci.org/telia-oss/grafana-resource.svg?branch=master)](https://travis-ci.org/telia-oss/grafana-resource)
 
 # Grafana resource
 
