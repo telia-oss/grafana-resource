@@ -1,0 +1,13 @@
+language: rust
+rust:
+  - 1.34.1
+sudo: false
+services:
+  - docker
+matrix:
+  fast_finish: true
+notifications:
+  email: false
+cache: cargo
+script:
+  - cargo build --verbose --all
