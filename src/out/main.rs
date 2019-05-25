@@ -1,4 +1,4 @@
-// #![deny(warnings)]
+#![deny(warnings)]
 extern crate rustana;
 extern crate serde;
 extern crate serde_json;
@@ -12,35 +12,40 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Read;
 
+#[derive(Serialize, Deserialize, Debug)]
+struct Version {
+    pub r#ref: String,
+}
+
 #[derive(Deserialize, Debug)]
 struct Source {
     pub grafana_url: String,
     pub grafana_token: String,
 }
+
 #[derive(Deserialize, Debug)]
 struct Params {
     pub dashboard_id: String,
     pub panels: String,
 }
+
 #[derive(Deserialize, Debug)]
 struct OutInput {
     pub source: Source,
     pub params: Params,
+    pub version: Version,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 struct OutOutput {
-    pub version: i64,
+    pub version: Version,
     pub meta: MutateDashboardResponse,
 }
 
-fn print_done() {
-    println!("\n\nDone.");
-}
-
-fn read_panels_from_file(panels: String) -> Result<Vec<Panels>, Box<Error>> {
+fn read_panels_from_file(path: String, dir: String) -> Result<Vec<Panels>, Box<Error>> {
+    let file_path = format!("{}/{}", dir, path);
     // Read from file
-    let mut file = File::open(panels)?;
+    let mut file = File::open(file_path)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     // Deserialize
@@ -62,15 +67,18 @@ fn read_out_input() -> Result<OutInput, Box<Error>> {
 }
 
 fn main() {
-    let input_output = read_out_input();
-    if input_output.is_err() {
-        println!(
+    let args: Vec<String> = std::env::args().collect();
+    let ref dir = &args[1];
+
+    let out_input = read_out_input();
+    if out_input.is_err() {
+        eprintln!(
             "Error getting resource outInput! {:?}",
-            input_output.unwrap_err()
+            out_input.unwrap_err()
         );
         return;
     }
-    let input = input_output.unwrap();
+    let input = out_input.unwrap();
 
     let params = input.params;
     let source = input.source;
@@ -80,18 +88,23 @@ fn main() {
     let panels = params.panels;
 
     let mut client = GrafanaClient::new(&url, &token);
-    match read_panels_from_file(panels) {
+    match read_panels_from_file(panels, dir.to_string()) {
         Ok(panels) => match client.update_dashboard_by_id(&dashboard_id, panels) {
             Ok(res) => {
+                let ver = Version {
+                    r#ref: input.version.r#ref,
+                };
                 let out_output: OutOutput = OutOutput {
-                    version: res.id,
+                    version: ver,
                     meta: res,
                 };
-                println!("{:?}", out_output);
+                println!(
+                    "{}",
+                    serde_json::to_string(&out_output).expect("error serializing output")
+                );
             }
-            Err(e) => println!("error updating dashboard: {:?}", e),
+            Err(e) => eprintln!("error updating dashboard: {:?}", e),
         },
-        Err(e) => println!("error reading dashboard panels: {:?}", e),
+        Err(e) => eprintln!("error reading dashboard panels: {:?}", e),
     }
-    print_done();
 }

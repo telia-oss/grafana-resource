@@ -7,3 +7,16 @@ authors = ["Mohamad al moualem <m.almouallem@gmail.com>"]
 rustana = "0.0.2"
 serde_json = "1.0.39"
 serde = { version = "1.0.91", features = ["derive"] }
+
+[[bin]]
+name = "check"
+path = "src/check/main.rs"
+
+[[bin]]
+name = "in"
+path = "src/in/main.rs"
+
+[[bin]]
+name = "out"
+path = "src/out/main.rs"
+
