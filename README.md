@@ -39,8 +39,8 @@ resource_types:
 
 ``` yaml
 resource:
-- name: grafana-resource
-    type: resource
+- name: grafana-update
+    type: grafana-resource
     source:
       grafana_url: ((grafana-url))
       grafana_token: ((grafana-token))
@@ -49,7 +49,7 @@ resource:
 ### Plan
 
 ``` yaml
-- put: grafana-resource
+- put: grafana-update
   params: 
     dashboard_id: ((dashboard-id))
     panels: "path/to/panels.json"
