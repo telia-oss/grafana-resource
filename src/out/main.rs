@@ -1,4 +1,4 @@
-#![deny(warnings)]
+// #![deny(warnings)]
 extern crate rustana;
 extern crate serde;
 extern crate serde_json;
