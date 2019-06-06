@@ -22,7 +22,6 @@ struct Source {
 #[derive(Deserialize, Debug)]
 struct InInput {
     pub source: Source,
-    pub version: Version,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -51,9 +50,8 @@ fn main() {
         );
         return;
     }
-    let input = in_input.unwrap();
     let ver = Version {
-        r#ref: input.version.r#ref,
+        r#ref: "ref".to_owned(),
     };
 
     let in_output: InOutput = InOutput { version: ver };

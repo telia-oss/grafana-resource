@@ -33,13 +33,12 @@ struct Params {
 struct OutInput {
     pub source: Source,
     pub params: Params,
-    pub version: Version,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 struct OutOutput {
     pub version: Version,
-    pub meta: MutateDashboardResponse,
+    pub metadata: MutateDashboardResponse,
 }
 
 fn read_panels_from_file(path: String, dir: String) -> Result<Vec<Panels>, Box<Error>> {
@@ -92,11 +91,11 @@ fn main() {
         Ok(panels) => match client.update_dashboard_by_id(&dashboard_id, panels) {
             Ok(res) => {
                 let ver = Version {
-                    r#ref: input.version.r#ref,
+                    r#ref: dashboard_id,
                 };
                 let out_output: OutOutput = OutOutput {
                     version: ver,
-                    meta: res,
+                    metadata: res,
                 };
                 println!(
                     "{}",
