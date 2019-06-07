@@ -3,7 +3,6 @@ extern crate rustana;
 extern crate serde;
 extern crate serde_json;
 
-use rustana::rustana_types::MutateDashboardResponse;
 use rustana::rustana_types::Panels;
 use rustana::GrafanaClient;
 use serde::{Deserialize, Serialize};
@@ -15,6 +14,12 @@ use std::io::Read;
 #[derive(Serialize, Deserialize, Debug)]
 struct Version {
     pub r#ref: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct MetaData {
+    name: String,
+    value: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -38,7 +43,7 @@ struct OutInput {
 #[derive(Serialize, Deserialize, Debug)]
 struct OutOutput {
     pub version: Version,
-    pub metadata: MutateDashboardResponse,
+    pub metadata: Vec<MetaData>,
 }
 
 fn read_panels_from_file(path: String, dir: String) -> Result<Vec<Panels>, Box<Error>> {
@@ -93,9 +98,35 @@ fn main() {
                 let ver = Version {
                     r#ref: dashboard_id,
                 };
+                let mut metadata = vec![
+                    MetaData {
+                        name: "id".to_owned(),
+                        value: res.id.to_string(),
+                    },
+                    MetaData {
+                        name: "slug".to_owned(),
+                        value: res.slug,
+                    },
+                    MetaData {
+                        name: "status".to_owned(),
+                        value: res.status,
+                    },
+                    MetaData {
+                        name: "uid".to_owned(),
+                        value: res.uid,
+                    },
+                    MetaData {
+                        name: "url".to_owned(),
+                        value: res.url,
+                    },
+                    MetaData {
+                        name: "version".to_owned(),
+                        value: res.version.to_string(),
+                    },
+                ];
                 let out_output: OutOutput = OutOutput {
                     version: ver,
-                    metadata: res,
+                    metadata: metadata,
                 };
                 println!(
                     "{}",
